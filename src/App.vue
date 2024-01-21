@@ -1,8 +1,8 @@
 <template>
-  <div class="d-flex">
+  <!-- <div class="d-flex">
     <button @click="previousPage">Indietro</button>
     <button @click="nextPage">Avanti</button>
-  </div>
+  </div> -->
   <!--   <ul>
     <li v-for="project in store.projects" :key="project.id">
       {{ project.title }}
@@ -34,39 +34,7 @@ export default {
       store,
     }
   },
-  methods: {
-    getAllProjects() {
-      axios.get(store.apiUrl + '/projects', { params: { page: this.store.currentPage } }).then((res) => {
-        console.log(res.data);
-        this.store.projects = res.data.results.data;
-        this.store.projectsLinks = res.data.results;
-        console.log(`links`, this.store.projectsLinks);
-        console.log(this.store.projects);
-        this.store.currentPage = res.data.results.current_page;
-        this.store.lastPage = res.data.results.last_page;
-      });
-    },
-    nextPage() {
-      if (this.store.currentPage < this.store.lastPage) {
-        this.store.currentPage = this.store.currentPage + 1;
-      } else {
-        this.store.currentPage = 1;
-      }
-      this.getAllProjects();
-    },
-    previousPage() {
-      if (this.store.currentPage === 1) {
-        this.store.currentPage = this.store.lastPage;
-      } else {
-        this.store.currentPage = this.store.currentPage - 1;
-      }
-      this.getAllProjects();
-    },
 
-  },
-  mounted() {
-    this.getAllProjects()
-  },
 }
 </script>
 

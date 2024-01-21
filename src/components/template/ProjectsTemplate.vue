@@ -3,6 +3,7 @@
         <main class="flex-shrink-0">
             <!-- Navigation-->
             <TopBar />
+
             <!-- Projects Section-->
             <section class="py-5">
                 <div class="container px-5 mb-5">
@@ -11,7 +12,14 @@
                     </div>
                     <div class="row gx-5 justify-content-center">
                         <div class="col-lg-11 col-xl-9 col-xxl-8">
-                            <!-- Project Card 1-->
+                            <!-- Project Card V-FOR-->
+                            <!-- Buttons -->
+                            <div id="buttons" class="d-flex  justify-content-between mb-3">
+                                <button @click="previousPage" class="next-prev-button">Indietro</button>
+                                <h6 class="mt-4">Current Page: {{ store.currentPage }} of {{ store.lastPage }}</h6>
+                                <button @click="nextPage" class="next-prev-button">Avanti</button>
+                            </div>
+                            <!-- CARD PROJECT -->
                             <div v-for="project in store.projects" :key="project.id"
                                 class="card overflow-hidden shadow rounded-4 border-0 mb-5">
                                 <div class="card-body p-0">
@@ -31,7 +39,13 @@
                                     <img class="img-fluid" src="https://dummyimage.com/800x400/343a40/6c757d" alt="..." />
                                 </div>
                             </div>
-
+                            <!-- Buttons -->
+                            <div id="buttons" class="d-flex  justify-content-between mb-3">
+                                <button @click="previousPage" class="next-prev-button">Indietro</button>
+                                <h6 class="mt-4">Current Page: {{ store.currentPage }}/{{ store.lastPage }}</h6>
+                                <button @click="nextPage" class="next-prev-button">Avanti</button>
+                            </div>
+                            <!--  -->
                         </div>
                     </div>
                 </div>
@@ -68,6 +82,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import { store } from './../../data/store.js';
 import TopBar from './partials/topbar.vue';
 export default {
@@ -79,7 +94,37 @@ export default {
         }
     },
     methods: {
+        getAllProjects() {
+            axios.get(store.apiUrl + '/projects', { params: { page: this.store.currentPage } }).then((res) => {
+                console.log(res.data);
+                this.store.projects = res.data.results.data;
+                this.store.projectsLinks = res.data.results;
+                console.log(`links`, this.store.projectsLinks);
+                console.log(this.store.projects);
+                this.store.currentPage = res.data.results.current_page;
+                this.store.lastPage = res.data.results.last_page;
+            });
+        },
+        nextPage() {
+            if (this.store.currentPage < this.store.lastPage) {
+                this.store.currentPage = this.store.currentPage + 1;
+            } else {
+                this.store.currentPage = 1;
+            }
+            this.getAllProjects();
+        },
+        previousPage() {
+            if (this.store.currentPage === 1) {
+                this.store.currentPage = this.store.lastPage;
+            } else {
+                this.store.currentPage = this.store.currentPage - 1;
+            }
+            this.getAllProjects();
+        },
 
+    },
+    mounted() {
+        this.getAllProjects()
     },
 }
 </script>
