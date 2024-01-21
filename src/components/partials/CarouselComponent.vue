@@ -1,9 +1,9 @@
 <template>
-    <Carousel id="gallery" :items-to-show="1" :wrap-around="false" v-model="currentSlide">
+    <Carousel id="gallery" :items-to-show="1" :wrap-around="false" v-model="currentSlide" class="mt-5">
         <Slide v-for="project in store.projects" :key="project.id" class="border">
             <div class="carousel__item">
-                <h2>{{ project.title }}</h2>
-                <h6>{{ project.category.name }}</h6>
+                <h2 class="mt-2">{{ project.title }}</h2>
+                <h5>{{ project.category.name }}</h5>
             </div>
         </Slide>
     </Carousel>
@@ -13,16 +13,19 @@
             <div class="carousel__item border" @click="slideTo(slide - 1)">{{ project.technologies[0].name }}</div>
         </Slide>
     </Carousel>
+    <!-- <div v-for="project in store.projects" :key="project.id">
+        <h2>{{ project.title }}</h2>
+    </div> -->
 </template>
   
 
 <script>
 import { defineComponent } from 'vue';
-import { Carousel, Slide } from 'vue3-carousel';
+import { Carousel, Slide, Navigation, Pagination } from 'vue3-carousel';
 import 'vue3-carousel/dist/carousel.css';
 import { store } from './../../data/store.js';
 export default {
-    components: { Carousel, Slide, Navigation, },
+    components: { Carousel, Slide, Navigation, Pagination },
     name: 'CarouselComponent',
     data() {
         return {

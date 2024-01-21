@@ -1,4 +1,5 @@
 @use './partials/variables.scss' as *;
+@use './partials/template.scss' as *;
 @import 'bootstrap/scss/bootstrap';
 
 
@@ -21,11 +22,11 @@ background: #888;
 ::-webkit-scrollbar-thumb:hover {
 background: #555; 
 }
-body{
+/* body{
   background-color:#151C2B;
   background-image: linear-gradient(to left top, #0c111b, #111723, #151c2b, #182233, #1c273b);
   background-repeat: no-repeat;
   font-family: 'Roboto', sans-serif;
   color: white;
   height: 100vh;
-}
+} */
