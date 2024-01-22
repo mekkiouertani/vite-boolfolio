@@ -1,3 +1,5 @@
+
+import { store } from '@/data/store';
 <template>
     <main class="flex-shrink-0">
         <section class="py-5">
@@ -44,7 +46,7 @@ import axios from 'axios';
 import { store } from '../data/store.js';
 import TopBar from '../components/TopBar.vue';
 export default {
-    components: { TopBar, CardComponent },
+    components: { TopBar, CardComponent, },
     name: "AppProjects",
     data() {
         return {

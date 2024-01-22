@@ -1,5 +1,7 @@
 <template>
-    <div v-for="project in store.projects" :key="project.id" class="card overflow-hidden shadow rounded-4 border-0 mb-5">
+    <LoaderComponent v-if="!store.projects" />
+    <div v-for="  project   in   store.projects  " :key="project.id"
+        class="card overflow-hidden shadow rounded-4 border-0 mb-5">
         <div class="card-body p-0">
             <div class="d-flex align-items-center">
                 <div class="p-5">
@@ -8,14 +10,14 @@
                             class="text-gradient text-decoration-none ">
                             {{ project.title }} </router-link>
                     </h2>
-                    <p>{{ project.body }}</p>
-                    <h5>Type:
+                    <p class="mt-3">{{ formatProjectBody(project.body) }}</p>
+                    <h5 class="mt-4">Type:
                         <span class="fs-4 text-gradient px-1"> {{ project.category.name }}</span>
                     </h5>
                     <h5>Technologies:
-                        <span v-for="technology in project.technologies" :key="technology.id"
+                        <span v-for="  technology   in   project.technologies  " :key="technology.id"
                             class="fs-4 text-gradient px-1">{{
-                                technology.name }}, </span>
+                                technology.name }} | </span>
                     </h5>
                 </div>
             </div>
@@ -27,13 +29,22 @@
 
 <script>
 import { store } from '../data/store.js';
+import LoaderComponent from './partials/LoaderComponent.vue';
 export default {
+    components: { LoaderComponent },
     name: 'CardComponent',
     data() {
         return {
             store,
+        };
+    },
+    methods: {
+        formatProjectBody(text) {
+            const textWithoutHtml = text.replace(/<[^>]*>?/gm, '');
+            return textWithoutHtml.length > 200 ? textWithoutHtml.slice(0, 200) + '...' : textWithoutHtml;
         }
     },
+
 }
 </script>
 

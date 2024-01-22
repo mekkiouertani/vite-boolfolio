@@ -8,7 +8,7 @@
                     class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
-                    <li class="nav-item" v-for="item in menu" :key="index">
+                    <li class="nav-item" v-for="item in menu">
                         <router-link :to="{ name: item.name }" class="nav-link" active-class="active">
                             {{ item.label
                             }}</router-link>
