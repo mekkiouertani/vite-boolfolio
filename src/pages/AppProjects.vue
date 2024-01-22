@@ -25,7 +25,11 @@
                                 <div class="card-body p-0">
                                     <div class="d-flex align-items-center">
                                         <div class="p-5">
-                                            <h2 class="fw-bolder">{{ project.title }}</h2>
+                                            <h2 class="fw-bolder">
+                                                <router-link
+                                                    :to="{ name: 'single-project', params: { slug: project.slug } }">
+                                                    {{ project.title }} </router-link>
+                                            </h2>
                                             <p>{{ project.body }}</p>
                                             <h5>Type:
                                                 <span class=" px-3 border-bottom"> {{ project.category.name }}</span>
@@ -83,11 +87,11 @@
 
 <script>
 import axios from 'axios';
-import { store } from './../../data/store.js';
-import TopBar from './partials/topbar.vue';
+import { store } from '../data/store.js';
+import TopBar from '../components/template/partials/TopBar.vue';
 export default {
     components: { TopBar },
-    name: "ProjectsTemplate",
+    name: "AppProjects",
     data() {
         return {
             store,

@@ -1,20 +1,10 @@
 <template>
-  <!-- <div class="d-flex">
-    <button @click="previousPage">Indietro</button>
-    <button @click="nextPage">Avanti</button>
-  </div> -->
-  <!--   <ul>
-    <li v-for="project in store.projects" :key="project.id">
-      {{ project.title }}
-    </li>
-  </ul> -->
-  <IndexTemplate v-if="store.selectedSection === 'index'" />
+  <router-view></router-view>
+  <!--  -->
+  <!--  <IndexTemplate v-if="store.selectedSection === 'index'" />
   <ProjectsTemplate v-if="store.selectedSection === 'projects'" />
   <ContactTemplate v-if="store.selectedSection === 'contact'" />
-  <ResumeTemplate v-if="store.selectedSection === 'resume'" />
-  <!-- <section class="container pt-5"> -->
-  <!-- <h1>Boolfolio <i class="fa-solid fa-book"></i></h1> -->
-  <!-- <CarouselComponent /> -->
+  <ResumeTemplate v-if="store.selectedSection === 'resume'" /> -->
 </template>
 
 <script>
