@@ -15,7 +15,7 @@
                         <span class="fs-4 text-gradient px-1"> {{ project.category.name }}</span>
                     </h5>
                     <h5>Technologies:
-                        <span v-for="  technology   in   project.technologies  " :key="technology.id"
+                        <span v-for="technology in project.technologies" :key="technology.id"
                             class="fs-4 text-gradient px-1">{{
                                 technology.name }} | </span>
                     </h5>
@@ -48,4 +48,13 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+h2 {
+    transition: 1s;
+    text-shadow: 5px 5px 10px rgba($color: #000000, $alpha: 0.3);
+
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+</style>
