@@ -1,3 +1,5 @@
+
+import ProjectsTemplateVue from '@/components/template/ProjectsTemplate.vue';
 <template>
     <section class="d-flex flex-column h-100 bg-light">
         <main class="flex-shrink-0">
@@ -40,7 +42,12 @@
                                             </h5>
                                         </div>
                                     </div>
-                                    <img class="img-fluid" src="https://dummyimage.com/800x400/343a40/6c757d" alt="..." />
+                                    <!--  <img class="img-fluid" src="https://dummyimage.com/800x400/343a40/6c757d" alt="..." /> -->
+                                    <img class="img-fluid" v-if="project.gif" :src="`${store.basePathImage}${project.gif}`"
+                                        :alt="project.title">
+                                    <img class="img-fluid" v-else :src="`${store.basePathImage}${project.image}`"
+                                        :alt="project.title">
+
                                 </div>
                             </div>
                             <!-- Buttons -->

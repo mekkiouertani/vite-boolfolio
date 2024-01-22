@@ -3,7 +3,8 @@
         <main class="flex-shrink-0">
             <TopBar />
             <h2 v-if="project" class="container"> {{ project.title }}</h2>
-            <img :src="`${store.basePathImage}${project.gif}`" :alt="project.title">
+            <img class="img-fluid" v-if="project.gif" :src="`${store.basePathImage}${project.gif}`" :alt="project.title">
+            <img class="img-fluid" v-else :src="`${store.basePathImage}${project.image}`" :alt="project.title">
         </main>
     </section>
 </template>
