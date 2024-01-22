@@ -1,23 +1,20 @@
 <template>
-  <router-view></router-view>
-  <!--  -->
-  <!--  <IndexTemplate v-if="store.selectedSection === 'index'" />
-  <ProjectsTemplate v-if="store.selectedSection === 'projects'" />
-  <ContactTemplate v-if="store.selectedSection === 'contact'" />
-  <ResumeTemplate v-if="store.selectedSection === 'resume'" /> -->
+  <section class="d-flex flex-column h-100 bg-light">
+    <Topbar />
+    <router-view></router-view>
+    <FooterComponent />
+  </section>
 </template>
 
 <script>
 import { store } from './data/store.js';
 import axios from 'axios';
 
-import ResumeTemplate from './components/template/ResumeTemplate.vue';
-import ContactTemplate from './components/template/ContactTemplate.vue';
-import ProjectsTemplate from './components/template/ProjectsTemplate.vue';
-import IndexTemplate from './components/template/IndexTemplate.vue';
-import CarouselComponent from './components/partials/CarouselComponent.vue';
+
+import Topbar from './components/TopBar.vue';
+import FooterComponent from './components/FooterComponent.vue';
 export default {
-  components: { CarouselComponent, ContactTemplate, IndexTemplate, ProjectsTemplate, ResumeTemplate },
+  components: { Topbar, FooterComponent },
   name: 'App',
   data() {
     return {

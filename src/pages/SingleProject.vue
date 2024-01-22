@@ -1,16 +1,13 @@
 <template>
-    <section class="d-flex flex-column h-100 bg-light">
-        <main class="flex-shrink-0">
-            <TopBar />
-            <h2 v-if="project" class="container"> {{ project.title }}</h2>
-            <img class="img-fluid" v-if="project.gif" :src="`${store.basePathImage}${project.gif}`" :alt="project.title">
-            <img class="img-fluid" v-else :src="`${store.basePathImage}${project.image}`" :alt="project.title">
-        </main>
-    </section>
+    <main class="flex-shrink-0">
+        <h2 v-if="project" class="container"> {{ project.title }}</h2>
+        <img class="img-fluid" v-if="project.gif" :src="`${store.basePathImage}${project.gif}`" :alt="project.title">
+        <img class="img-fluid" v-else :src="`${store.basePathImage}${project.image}`" :alt="project.title">
+    </main>
 </template>
 
 <script>
-import TopBar from '../components/template/partials/TopBar.vue';
+import TopBar from '../components/TopBar.vue';
 import axios from 'axios';
 import { store } from '../data/store.js';
 export default {

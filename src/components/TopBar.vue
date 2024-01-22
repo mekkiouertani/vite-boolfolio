@@ -8,18 +8,10 @@
                     class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
-                    <li class="nav-item">
-                        <router-link :to="{ name: 'home' }" class="nav-link" active-class="active">Home</router-link>
-                    </li>
-                    <li class="nav-item" @click="selectView('resume')">
-                        <a class="nav-link" href="#">Resume</a>
-                    </li>
-                    <li class="nav-item">
-                        <router-link class="nav-link" :to="{ name: 'projects' }"
-                            active-class="active">Projects</router-link>
-                    </li>
-                    <li class="nav-item" @click="selectView('contact')">
-                        <a class="nav-link" href="#">Contact</a>
+                    <li class="nav-item" v-for="item in menu" :key="index">
+                        <router-link :to="{ name: item.name }" class="nav-link" active-class="active">
+                            {{ item.label
+                            }}</router-link>
                     </li>
                 </ul>
             </div>
@@ -28,7 +20,7 @@
 </template>
 
 <script>
-import { store } from './../../../data/store.js';
+import { store } from '../data/store.js';
 export default {
     name: "TopBar",
     data() {
@@ -47,9 +39,6 @@ export default {
         }
     },
     methods: {
-        selectView(componentName) {
-            this.store.selectedSection = componentName;
-        }
     },
     mounted() {
     },

@@ -5,6 +5,5 @@ export const store = reactive({
   projects: [],
   currentPage: 1,
   lastPage: 0,
-  selectedSection: "index",
   basePathImage: "http://localhost:8000/storage/",
 });
