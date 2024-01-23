@@ -49,7 +49,7 @@
                             </div>
                         </div>
                     </div>
-                    <p>{{ project.body }}</p>
+                    <p>{{ formatProjectBody(project.body) }}</p>
                 </div>
                 <div class="col-12 col-lg-6">
                     <div class="d-flex flex-column jusitfy-content-between">
@@ -63,6 +63,12 @@
                     </div>
                 </div>
             </div>
+            <!--  -->
+            <router-link :to="{ name: 'single-project', params: { slug: 'disney-clone' } }">
+                next proj
+            </router-link>
+
+            <!--  -->
         </section>
     </main>
 </template>
@@ -89,11 +95,27 @@ export default {
                 } else {
                     this.$router.push({ name: 'not-found' });
                 }
+
             });
-        }
+        },
+        formatProjectBody(text) {
+            const textWithoutHtml = text.replace(/<[^>]*>?/gm, '');
+            return textWithoutHtml;
+        },
+
+    },
+    computed: {
     },
     created() {
         this.getProjectData();
+        console.log(`slug`);
+    },
+    watch: {
+        '$route'(to, from) {
+            if (to.params.slug !== from.params.slug) {
+                this.getProjectData();
+            }
+        }
     },
 }
 </script>

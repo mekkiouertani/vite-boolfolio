@@ -1,9 +1,10 @@
-
-import { store } from '@/data/store';
 <template>
     <main class="flex-shrink-0">
         <section class="py-5">
             <div class="container px-5 mb-5">
+                <!--  <select name="" id="">
+                    <option value="" v-for="item in store.typeList.name"></option>
+                </select> -->
                 <div class="text-center mb-5">
                     <h1 class="display-5 fw-bolder mb-0"><span class="text-gradient d-inline">Projects</span></h1>
                 </div>
@@ -54,15 +55,28 @@ export default {
         }
     },
     methods: {
+        /* getAllTypes() {
+            axios.get(store.apiUrl + "/categories").then((res) => {
+                for (let i = 0; i < res.data.length; i++) {
+                    this.store.typeList.push(res.data);
+                    console.log(`types`, this.store.typeList);
+                });
+        }, */
         getAllProjects() {
             axios.get(store.apiUrl + '/projects', { params: { page: this.store.currentPage } }).then((res) => {
-                console.log(res.data);
+                //console.log(res.data);
                 this.store.projects = res.data.results.data;
                 this.store.projectsLinks = res.data.results;
-                console.log(`links`, this.store.projectsLinks);
-                console.log(this.store.projects);
+                //console.log(`links`, this.store.projectsLinks);
+                console.log(`store.Projects`, this.store.projects);
                 this.store.currentPage = res.data.results.current_page;
                 this.store.lastPage = res.data.results.last_page;
+                /* CICLO SLUG */
+                for (let i = 0; i < this.store.projects.length; i++) {
+                    let projectSlug = this.store.projects[i].slug;
+                    this.store.projectSlug.push(projectSlug);
+                }
+                console.log(`slug`, this.store.projectSlug); //CLG PROJECTSLUG
             }).catch((err) => {
                 console.log(err);
             });
@@ -86,7 +100,8 @@ export default {
 
     },
     mounted() {
-        this.getAllProjects()
+        this.getAllProjects();
+        //this.getAllTypes();
     },
 }
 </script>

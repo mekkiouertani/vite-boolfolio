@@ -6,4 +6,6 @@ export const store = reactive({
   currentPage: 1,
   lastPage: 0,
   basePathImage: "http://localhost:8000/storage/",
+  projectSlug: [],
+  typeList: [],
 });
