@@ -34,7 +34,11 @@ export default {
                 {
                     label: "Projects",
                     name: "projects",
-                }
+                },
+                {
+                    label: "Contact",
+                    name: "contact",
+                },
             ],
         }
     },
